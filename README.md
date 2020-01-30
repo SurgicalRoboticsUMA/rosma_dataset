@@ -42,8 +42,6 @@ The *New User* option opens a new panel to enter the profile of a new user.  The
 * Name, Surname, Gender and Age.
 * The last fields correspond with the labels of each task of the experiment.  These fields contains thenumber of repetitions the user has performed for each task.  Thus, these fields are initialize to zero andare updated each time a user performs a task.
 
-![screenshots](https://github.com/irivas-uma/ROSMA/blob/master/Resources/newuser.png)
-
 ### Perform the experiment
 
 When you select a particular user, first, the experiment history is displayed, showing the number of trials the user has performed for each task. Then, to start the experiment, you have to choose a task, and then press *Start Recording*. The time spent in the task is shown until the end of the experiment. The number of erros made by the user during the performance is entered by hand. The behavior of the buttons of this experiment panel is as follows:
@@ -56,5 +54,3 @@ For example, *U01_Clipping_05* corresponds to the fifth trial of the clipping ta
 * Save: Button to save the current data. Consequently, the variable *UsersData* is updated with the new trial of the current task, and the variable *performanceData* is updated with the performance time, number of errors and score. The score is computed as *time in seconds + penalty points*.
 
 * Delete: Press this button if you don't want to save the current trial. Then, *UsersData* is not updated and the next trial will overwrite the csv. 
-
-![screenshots](https://github.com/irivas-uma/ROSMA/blob/master/Resources/performance.png)
