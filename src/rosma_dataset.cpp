@@ -12,14 +12,13 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
-#include <rosbag/bag.h>
 
 using namespace std;
 
 ofstream File;
 string filename;
 
-float data[169];
+float data[168];
 
 bool isRecording(false);
 bool isFirst(true);
@@ -280,16 +279,6 @@ void cb_psm2_joint(const sensor_msgs::JointState::ConstPtr& msg)
   data[167] = msg->effort[6];
 }
 
-void cb_coag(const sensor_msgs::Joy::ConstPtr& msg)
-{
-  data[168] = msg->buttons[0];
-}
-
-void cb_image(const sensor_msgs::Image::ConstPtr& msg)
-{
-  // data[168] = msg->buttons[0];
-}
-
 void cb_start_recording(const std_msgs::String::ConstPtr& msg){
 	filename = msg-> data;
 	isRecording = true;
@@ -409,7 +398,7 @@ int main(int argc, char** argv)
   ros::NodeHandle nh;
   ros::Rate loop_rate(50);
 
-  ros::Subscriber sub[22];
+  ros::Subscriber sub[20];
   sub[0] = nh.subscribe("/dvrk/MTML/position_cartesian_current",1000, &cb_mtml_position);
   sub[1] = nh.subscribe("/dvrk/MTML/twist_body_current",1000, &cb_mtml_velocity);
   sub[2] = nh.subscribe("/dvrk/MTML/wrench_body_current",1000, &cb_mtml_effort);
@@ -434,16 +423,7 @@ int main(int argc, char** argv)
   
   sub[18] = nh.subscribe("/rosma/gui/filename",1000, &cb_start_recording);
   sub[19] = nh.subscribe("/rosma/gui/stop_recording",1000, &cb_stop_recording);
-  
-  sub[20] = nh.subscribe("/dvrk/footpedal/coag",1000, &cb_coag);
-  
-  sub[21] = nh.subscribe("/rosma/image",1000, &cb_image);
 
-  //string path = "/home/uma/catkin_ws/dvrk_dataset/";
-  //string filename = "data.csv";
-  
-  
-  //rosbag::Bag bag;
   
   while(ros::ok())
   {
@@ -452,7 +432,6 @@ int main(int argc, char** argv)
 		if (isFirst){
 			ROS_INFO("Start Recording");
 			OpenRecordingFile(filename);
-			//bag.open("test.bag", rosbag::bagmode::Write);
 			isFirst = false;
 			}
 			
