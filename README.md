@@ -9,7 +9,7 @@ Open software developed under the European TERRINet program.
 This package contains a MATLAB GUI that collects data of the dVRK and a ros node that bridges between the dVRK node and the GUI. 
 
 ## Prerequisites
-* ROS - Tested with KDainetic and Melodic.
+* ROS - Tested with Kinetic and Melodic.
 * MATLAB - Tested with R2019b.
 * da Vinci Research Kit (dVRK) - Tested with the dVRK in The BioRobotics Institute, Scuola Superiore Sant'Anna, Pontedera, Italy.
 
