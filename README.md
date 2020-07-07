@@ -21,12 +21,17 @@ To run the file press the play button. The cartesian position of the Master Tool
 ## ROS
 If the checkbox *ROS* is on, the joint position of the four manipulators is published in the corresponding ROS topics to move them. Thus, if the dVRK package is running (real hardware or simulation) the manipulators will replicate the motion stored in the csv file. 
 
-You can download the dVRK package from [https://github.com/jhu-dvrk/dvrk-ros](https://github.com/jhu-dvrk/dvrk-ros), using the configuration files of the folder *config* of this repository. To do this, dowload this folder into the dvrk-ros package. Then, launch the package as:
+You can download the dVRK package from [https://github.com/jhu-dvrk/dvrk-ros](https://github.com/jhu-dvrk/dvrk-ros), using the configuration files of the folder *config* of this repository:
+- Copy file full_system.rviz into /dvrk-ros/dvrk_model/rviz_config.
+- Copy file dvrk_full_rviz.launch into /dvrk-ros/dvrk_robot/launch.
+- Copy files sawControllersPID-PSM_modified.xml and full_teleop_SIMULATED.json into /cisst-saw/sawIntuitiveResearchKit/share.
+
+Then, launch the package as:
 
 ```bash
 cd ~/catkin_ws
 source devel/setup.bash
-roslaunch dvrk_robot dvrk_full_rviz.launch slave1:=PSM1 slave2:=PSM2 master1:=MTMR master2:=MTML config:=/home/irivas/catkin_ws2/src/cisst-saw/sawIntuitiveResearchKit/share/sssup-dVRK/full_teleop_modified_SIMULATED.json
+roslaunch dvrk_robot dvrk_full_rviz.launch slave1:=PSM1 slave2:=PSM2 master1:=MTMR master2:=MTML config:=<catkin_ws path>/src/cisst-saw/sawIntuitiveResearchKit/share/full_teleop_modified_SIMULATED.json
 ```
 
 ![screenshots](https://github.com/SurgicalRoboticsUMA/dataPaper/blob/master/rviz.png)
