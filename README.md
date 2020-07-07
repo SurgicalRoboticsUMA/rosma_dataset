@@ -2,7 +2,9 @@
 Open software developed under the European TERRINet program.
 
 *Author:* Irene Rivas-Blanco
+
 *Contact info:* irivas@uma.es
+
 *Affiliation:* University of Malaga, [Medical Robotics Lab](https://www.uma.es/medical-robotics/cms/base/ver/base/basecontent/75284/proyectos/)
 
 ## MATLAB GUI
@@ -22,9 +24,9 @@ To run the file press the play button. The cartesian position of the Master Tool
 If the checkbox *ROS* is on, the joint position of the four manipulators is published in the corresponding ROS topics to move them. Thus, if the dVRK package is running (real hardware or simulation) the manipulators will replicate the motion stored in the csv file. 
 
 You can download the dVRK package from [https://github.com/jhu-dvrk/dvrk-ros](https://github.com/jhu-dvrk/dvrk-ros), using the configuration files of the folder *config* of this repository:
-- Copy file full_system.rviz into /dvrk-ros/dvrk_model/rviz_config.
-- Copy file dvrk_full_rviz.launch into /dvrk-ros/dvrk_robot/launch.
-- Copy files sawControllersPID-PSM_modified.xml and full_teleop_SIMULATED.json into /cisst-saw/sawIntuitiveResearchKit/share.
+- Copy file *full_system.rviz* into /dvrk-ros/dvrk_model/rviz_config.
+- Copy file *dvrk_full_rviz.launch* into /dvrk-ros/dvrk_robot/launch.
+- Copy files *sawControllersPID-PSM_modified.xml* and *full_teleop_SIMULATED.json* into /cisst-saw/sawIntuitiveResearchKit/share.
 
 Then, launch the package as:
 
