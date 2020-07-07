@@ -1,0 +1,89 @@
+<launch>
+
+  <arg name="master1" />   
+  <arg name="slave1" />  
+  <arg name="slave2" /> 
+  <arg name="master2" /> 
+  <arg name="config" />   
+
+  <arg name="master_model" default="$(find dvrk_model)/model/$(arg master1).urdf.xacro" />
+  <arg name="master_model2" default="$(find dvrk_model)/model/$(arg master2).urdf.xacro" />
+  <arg name="slave_model" default="$(find dvrk_model)/model/$(arg slave1).urdf.xacro" />
+  <arg name="slave_model2" default="$(find dvrk_model)/model/$(arg slave2).urdf.xacro" />
+  
+  <node name="dvrk_slave1_arm2_node"
+        pkg="dvrk_robot"
+        type="dvrk_console_json"        
+        args="-j $(arg config)"                     
+        output="screen"/>
+
+  <group ns="/dvrk/$(arg master1)">
+      <arg name="gui" default="false" />
+      <arg name="rate" default="20" />
+      
+      <param name="robot_description" command="rosrun xacro xacro $(arg master_model) prefix:=$(arg master1)_"/>
+      <param name="use_gui" value="$(arg gui)"/>
+      <param name="rate" value="$(arg rate)"/>
+      
+      <rosparam param="source_list" subst_value="True">
+        [/dvrk/$(arg master1)/state_joint_current]
+      </rosparam>
+
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  </group>
+
+  <group ns="/dvrk/$(arg master2)">
+      <arg name="gui" default="false" />
+      <arg name="rate" default="20" />
+      
+      <param name="robot_description" command="rosrun xacro xacro $(arg master_model2) prefix:=$(arg master2)_"/>
+      <param name="use_gui" value="$(arg gui)"/>
+      <param name="rate" value="$(arg rate)"/>
+      
+      <rosparam param="source_list" subst_value="True">
+        [/dvrk/$(arg master2)/state_joint_current]
+      </rosparam>
+
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  </group>
+
+  <group ns="/dvrk/$(arg slave1)">
+      <arg name="gui" default="false" />
+      <arg name="rate" default="20" />
+      
+      <param name="robot_description" command="rosrun xacro xacro $(arg slave_model) prefix:=$(arg slave1)_"/>
+      <param name="use_gui" value="$(arg gui)"/>
+      <param name="rate" value="$(arg rate)"/>
+      
+      <rosparam param="source_list" subst_value="True">
+        [/dvrk/$(arg slave1)/state_joint_current]
+      </rosparam>
+
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  </group>
+
+  <group ns="/dvrk/$(arg slave2)">
+      <arg name="gui" default="false" />
+      <arg name="rate" default="20" />
+      
+      <param name="robot_description" command="rosrun xacro xacro $(arg slave_model2) prefix:=$(arg slave2)_"/>
+      <param name="use_gui" value="$(arg gui)"/>
+      <param name="rate" value="$(arg rate)"/>
+      
+      <rosparam param="source_list" subst_value="True">
+        [/dvrk/$(arg slave2)/state_joint_current]
+      </rosparam>
+
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  </group>
+
+  <node name="rviz" pkg="rviz" type="rviz"
+     args="-d $(find dvrk_model)/rviz_config/full_system.rviz" />
+
+</launch>
+
+
