@@ -14,7 +14,7 @@ To run the gui:
 run(rosma_gui)
 ```
 
-First, browse a data file from the [dataset](https://zenodo.org/record/3932964#.XwTNX3UzakA). This will generate a mat file named *data.mat* containing a struct variable with all the data of the csv file. 
+First, browse a data file from the [dataset](https://zenodo.org/record/3932964#.XwTNX3UzakA). This will generate a mat file named *data.mat* containing a struct variable with all the data of the csv file. Note: make sure that the csv file is in the MATLAB working folder.
 
 To run the file press the play button. The cartesian position of the Master Tool Manipulators and the Patient Side Manipulators is displayed in real-time. You can pause the simulation and play it again, or stop it. 
 
