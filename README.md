@@ -11,7 +11,7 @@ Open software developed under the European TERRINet program.
 The MATLAB GUI for easily using the data of the ROSMA datset has been created with the tool App Designer in MATLAB R2019. 
 To run the gui:
 ```bash
-run(gui_rosma)
+run('gui_rosma')
 ```
 
 First, browse a data file from the [dataset](https://zenodo.org/record/3932964#.XwTNX3UzakA). This will generate a mat file named *data.mat* containing a struct variable with all the data of the csv file. Note: make sure that the csv file is in the MATLAB working folder.
