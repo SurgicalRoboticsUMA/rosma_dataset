@@ -6,7 +6,7 @@ Open software developed under the European TERRINet program.
 *Contact info:* irivas@uma.es
 
 *Affiliation:* University of Malaga, [Medical Robotics Lab](https://medicalrobotics.uma.es/)
-ectos/
+
 ## MATLAB GUI
 The MATLAB GUI for easily using the data of the ROSMA datset has been created with the tool App Designer in MATLAB R2019. 
 To run the gui:
